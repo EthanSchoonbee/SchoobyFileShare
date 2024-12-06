@@ -6,6 +6,7 @@ import {
     Routes
 } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
 import '../src/styles/fonts.css'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path="/" element={<LoginPage />} />
+                <Route path="/home" element={<HomePage />} />
             </Routes>
         </div>
     </Router>

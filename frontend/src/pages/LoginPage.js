@@ -1,14 +1,20 @@
 import React, {useState} from "react";
+import {useNavigate} from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // Implement login logic
         console.log("Logging in with:", { email, password });
+
+        //navigate to home page
+        navigate('/home');
     };
 
     const togglePasswordVisibility = () => {
@@ -31,7 +37,7 @@ const Login = () => {
                         <h1 className="text-4xl font-bold leading-tight tracking-tight text-green-600 md:text-3xl space-y-2">
                             Sign in to your account
                         </h1>
-                        <form className="space-y-4 md:space-y-6" action="#">
+                        <form className="space-y-4 md:space-y-6">
                             <div>
                                 <label htmlFor="email"
                                        className="block mb-2 text-m font-medium text-black text-left">
@@ -39,7 +45,11 @@ const Login = () => {
                                 </label>
                                 <input type="email" name="email" id="email"
                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-md focus:ring-green-600 focus:border-green-600 block w-full p-2.5"
-                                       placeholder="example@email.com" required=""/>
+                                       placeholder="example@email.com"
+                                       required
+                                       value={email}
+                                       onChange={(e) => setEmail(e.target.value)}
+                                />
                             </div>
                             <div>
                                 <label htmlFor="password"
@@ -67,8 +77,9 @@ const Login = () => {
                                 </div>
                             </div>
                             <button type="submit"
-                                    className="w-full text-white bg-green-600 hover:bg-green-500 focus:ring-2 focus:outline-none focus:ring-green-600 font-medium rounded-lg text-lg px-5 py-2.5 text-center">Sign
-                                in
+                                    onClick={handleSubmit}
+                                    className="w-full text-white bg-green-600 hover:bg-green-500 focus:ring-2 focus:outline-none focus:ring-green-600 font-medium rounded-lg text-lg px-5 py-2.5 text-center">
+                                Sign In
                             </button>
                         </form>
                     </div>
